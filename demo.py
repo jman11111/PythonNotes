@@ -1,0 +1,2 @@
+message = "hellofren"
+print(message)
