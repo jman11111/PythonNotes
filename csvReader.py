@@ -1,10 +1,6 @@
 import csv
-
-with open('Homework.csv', 'r') as csvfile:
+#reads csv and prints it
+with open('Homework.csv', newline = '') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
     for row in spamreader:
-        print (', ').join(row)
-
-message = input()
-message = message + " cool"
-print(message)
+        print (', '.join(row))
