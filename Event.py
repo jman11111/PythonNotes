@@ -1,6 +1,6 @@
 class event:
 
-    def __init__(self,eventName,eventTime,eventDate):
+    def __init__(self,eventName,eventDate,eventTime):
         self.name = eventName
-        self.time = eventTime
         self.date = eventDate
+        self.time = eventTime
