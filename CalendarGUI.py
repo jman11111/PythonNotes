@@ -9,7 +9,7 @@ bottom_frame = Frame(window).grid(row=1, column=0)
 btnNextMonth = Button(bottom_frame, text = "-->").grid(row=0,column=8)
 btnPreviousMonth = Button(bottom_frame, text = "<--").grid(row=0,column=0)
 
-label = Label(top_frame, text = "Calendar").grid(row=0,column=0,columnspan=7)
+"""label = Label(top_frame, text = "Calendar").grid(row=0,column=0,columnspan=7)
 btn1 = Button(bottom_frame, text = "1", bg = "red").grid(ipadx=13,ipady=10,row=1,column=1)
 btn2 = Button(bottom_frame, text = "2").grid(ipadx=13,ipady=10,row=1,column=2)
 btn3 = Button(bottom_frame, text = "3").grid(ipadx=13,ipady=10,row=1,column=3)
@@ -39,6 +39,6 @@ btn26 = Button(bottom_frame, text = "26", bg = "red").grid(ipadx=10,ipady=10,row
 btn27 = Button(bottom_frame, text = "27").grid(ipadx=10,ipady=10,row=4,column=6)
 btn28 = Button(bottom_frame, text = "28").grid(ipadx=10,ipady=10,row=4,column=7)
 btn29 = Button(bottom_frame, text = "29").grid(ipadx=10,ipady=10,row=5,column=1)
-btn30 = Button(bottom_frame, text = "30").grid(ipadx=10,ipady=10,row=5,column=2)
+btn30 = Button(bottom_frame, text = "30").grid(ipadx=10,ipady=10,row=5,column=2)"""
 
 mainloop()
