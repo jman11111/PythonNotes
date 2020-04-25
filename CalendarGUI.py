@@ -1,44 +1,46 @@
 from tkinter import *
+from Calendar import calendar
+
+def generateDaysofMonth(calendar, container, clear, delta):
+    counterDay = 1
+    counterRow = 1
+    counterColumn = 1
+    month = calendar.currentMonth
+    clear()
+    for day in range(len(calendar.Calendar[month+delta-1])):
+        btn1 = Button(container, text = counterDay, bg = "red").grid(ipadx=13,ipady=10,row=counterRow,column=counterColumn)
+        if(counterColumn == 7):
+            counterColumn = 1
+            counterRow = counterRow + 1
+        else:
+            counterColumn = counterColumn + 1
+        counterDay = counterDay + 1
+    calendar.currentMonth = calendar.currentMonth + delta
+    print(calendar.currentMonth)
+
+currentCalendar = calendar()
 
 window = Tk()
 window.title("GUI")
 
-top_frame = Frame(window).grid(row=0, column=0)
-bottom_frame = Frame(window).grid(row=1, column=0)
+top_frame = Frame(window)
+top_frame.grid(row=0, column=0)
+bottom_frame = Frame(window)
+bottom_frame.grid(row=1, column=0)
 
-btnNextMonth = Button(bottom_frame, text = "-->").grid(row=0,column=8)
-btnPreviousMonth = Button(bottom_frame, text = "<--").grid(row=0,column=0)
+def clear():
+    list = bottom_frame.winfo_children()
+    for l in list:
+        l.destroy()
 
-"""label = Label(top_frame, text = "Calendar").grid(row=0,column=0,columnspan=7)
-btn1 = Button(bottom_frame, text = "1", bg = "red").grid(ipadx=13,ipady=10,row=1,column=1)
-btn2 = Button(bottom_frame, text = "2").grid(ipadx=13,ipady=10,row=1,column=2)
-btn3 = Button(bottom_frame, text = "3").grid(ipadx=13,ipady=10,row=1,column=3)
-btn4 = Button(bottom_frame, text = "4").grid(ipadx=13,ipady=10,row=1,column=4)
-btn5 = Button(bottom_frame, text = "5").grid(ipadx=13,ipady=10,row=1,column=5)
-btn6 = Button(bottom_frame, text = "6", bg = "red").grid(ipadx=13,ipady=10,row=1,column=6)
-btn7 = Button(bottom_frame, text = "7").grid(ipadx=13,ipady=10,row=1,column=7)
-btn8 = Button(bottom_frame, text = "8").grid(ipadx=13,ipady=10,row=2,column=1)
-btn9 = Button(bottom_frame, text = "9").grid(ipadx=13,ipady=10,row=2,column=2)
-btn10 = Button(bottom_frame, text = "10").grid(ipadx=10,ipady=10,row=2,column=3)
-btn11 = Button(bottom_frame, text = "11", bg = "red").grid(ipadx=10,ipady=10,row=2,column=4)
-btn12 = Button(bottom_frame, text = "12").grid(ipadx=10,ipady=10,row=2,column=5)
-btn13 = Button(bottom_frame, text = "13").grid(ipadx=10,ipady=10,row=2,column=6)
-btn14 = Button(bottom_frame, text = "14").grid(ipadx=10,ipady=10,row=2,column=7)
-btn15 = Button(bottom_frame, text = "15").grid(ipadx=10,ipady=10,row=3,column=1)
-btn16 = Button(bottom_frame, text = "16", bg = "red").grid(ipadx=10,ipady=10,row=3,column=2)
-btn17 = Button(bottom_frame, text = "17").grid(ipadx=10,ipady=10,row=3,column=3)
-btn18 = Button(bottom_frame, text = "18").grid(ipadx=10,ipady=10,row=3,column=4)
-btn19 = Button(bottom_frame, text = "19").grid(ipadx=10,ipady=10,row=3,column=5)
-btn20 = Button(bottom_frame, text = "20").grid(ipadx=10,ipady=10,row=3,column=6)
-btn21 = Button(bottom_frame, text = "21", bg = "red").grid(ipadx=10,ipady=10,row=3,column=7)
-btn22 = Button(bottom_frame, text = "22").grid(ipadx=10,ipady=10,row=4,column=1)
-btn23 = Button(bottom_frame, text = "23").grid(ipadx=10,ipady=10,row=4,column=2)
-btn24 = Button(bottom_frame, text = "24").grid(ipadx=10,ipady=10,row=4,column=3)
-btn25 = Button(bottom_frame, text = "25").grid(ipadx=10,ipady=10,row=4,column=4)
-btn26 = Button(bottom_frame, text = "26", bg = "red").grid(ipadx=10,ipady=10,row=4,column=5)
-btn27 = Button(bottom_frame, text = "27").grid(ipadx=10,ipady=10,row=4,column=6)
-btn28 = Button(bottom_frame, text = "28").grid(ipadx=10,ipady=10,row=4,column=7)
-btn29 = Button(bottom_frame, text = "29").grid(ipadx=10,ipady=10,row=5,column=1)
-btn30 = Button(bottom_frame, text = "30").grid(ipadx=10,ipady=10,row=5,column=2)"""
+btnNextMonth = Button(top_frame, text = "-->",command = lambda: generateDaysofMonth(currentCalendar,bottom_frame,clear,1))
+btnNextMonth.grid(row=0,column=8)
+btnPreviousMonth = Button(top_frame, text = "<--",command = lambda: generateDaysofMonth(currentCalendar,bottom_frame,clear,-1))
+btnPreviousMonth.grid(row=0,column=0)
+
+label = Label(top_frame, text = "Calendar")
+label.grid(row=0,column=1,ipadx=40)
+
+generateDaysofMonth(currentCalendar,bottom_frame,clear,0)
 
 mainloop()
