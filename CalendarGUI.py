@@ -8,7 +8,10 @@ def generateDaysofMonth(calendar, container, clear, delta):
     month = calendar.currentMonth
     clear()
     for day in range(len(calendar.Calendar[month+delta-1])):
-        btn1 = Button(container, text = counterDay, bg = "red").grid(ipadx=13,ipady=10,row=counterRow,column=counterColumn)
+        if (len(calendar.Calendar[month+delta-1][day]) > 0):
+            btn1 = Button(container, text = counterDay, bg = "red").grid(ipadx=13,ipady=10,row=counterRow,column=counterColumn)
+        else:
+            btn1 = Button(container, text = counterDay).grid(ipadx=13,ipady=10,row=counterRow,column=counterColumn)
         if(counterColumn == 7):
             counterColumn = 1
             counterRow = counterRow + 1
@@ -16,7 +19,6 @@ def generateDaysofMonth(calendar, container, clear, delta):
             counterColumn = counterColumn + 1
         counterDay = counterDay + 1
     calendar.currentMonth = calendar.currentMonth + delta
-    print(calendar.currentMonth)
 
 currentCalendar = calendar()
 
@@ -27,6 +29,8 @@ top_frame = Frame(window)
 top_frame.grid(row=0, column=0)
 bottom_frame = Frame(window)
 bottom_frame.grid(row=1, column=0)
+event_frame = Frame(window)
+event_frame.grid(row=0,rowspan = 2,column = 1)
 
 def clear():
     list = bottom_frame.winfo_children()
@@ -40,6 +44,11 @@ btnPreviousMonth.grid(row=0,column=0)
 
 label = Label(top_frame, text = "Calendar")
 label.grid(row=0,column=1,ipadx=40)
+
+eventtitlelabel = Label(event_frame, text = "Events:")
+eventtitlelabel.grid(row=0,column=0,ipadx=40)
+eventslabel = Label(event_frame, text = "test")
+eventslabel.grid(row=1,column=0,ipadx=40)
 
 generateDaysofMonth(currentCalendar,bottom_frame,clear,0)
 

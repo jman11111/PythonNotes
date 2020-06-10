@@ -33,6 +33,15 @@ class calendar:
         self.readEvents()
         self.fillCalendar()
         self.printEventsInMonth(3)
+        self.printEventsInDay(3,20)
+
+    #Gets all events in a single day(int) given and returns array
+    def getEventsInDay(self,month,day):
+        inDay = []
+        for event in self.Calendar[month][day]:
+            inDay.append(event)
+
+        return inDay
 
     #Gets all events in month(int) given and returns array
     def getEventsInMonth(self,month):
@@ -46,6 +55,11 @@ class calendar:
     #Gets all events in a month(int) and prints them
     def printEventsInMonth(self,month):
         for event in self.getEventsInMonth(month):
+            print(event.name + " is on " + event.date + " at " + event.time)
+
+    #Gets all events in a day(int) and prints them
+    def printEventsInDay(self,month,day):
+        for event in self.getEventsInDay(month,day):
             print(event.name + " is on " + event.date + " at " + event.time)
 
     #read in all events from csv and store them in Events array
